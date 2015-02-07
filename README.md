@@ -1,3 +1,29 @@
+# Installation
+
+Dependencies:
+```
+brew install zmq
+```
+
+Install Colaboratory with the IJavascript kernel
+```
+git clone --recursive git@github.com:aGHz/colaboratory.git && cd colaboratory
+virtualenv . && . bin/activate
+pip install -r requirements.txt
+cd kernel && npm install && cd ..
+```
+
+Run (ideally set as an alias)
+```
+python -m colaboratory "--KernelManager.kernel_cmd=['node', '`pwd`/kernel/lib/kernel.js', '{connection_file}']"
+```
+
+In case of trouble, try:
+```
+git submodule init
+git submodule update
+```
+
 # CoLaboratory
 
 This repo contains two related tools:
@@ -69,8 +95,8 @@ Currently there is no way to install new libraries in the PNaCl kernel.
 The website [colaboratory.jupyter.org](http://colaboratory.jupyter.org) can be used for interactive editing of notebooks, but cannot yet connect to a local kernel.  This is due to https issues that we are currently working on.  However, running the Classic frontend as described above already works, as the website runs on localhost.
 
 ### The Collaboration Model
-CoLaboratory's collaboration model is evolving. The current model is a single collaborative notebook with separate kernels. This can lead to a mismatch between a user's kernel state and the state of the notebook. 
+CoLaboratory's collaboration model is evolving. The current model is a single collaborative notebook with separate kernels. This can lead to a mismatch between a user's kernel state and the state of the notebook.
 
-To understand how a state mismatch can manifest, consider the scenario below. Bob and Sue are working on the same notebook at the same time. Both Bob and Sue will have their own kernel state. Bobs changes will change the notebook Sue sees, but Sue's state is unchanged. If sue tries to access the variable Bob created, she will get an error. 
+To understand how a state mismatch can manifest, consider the scenario below. Bob and Sue are working on the same notebook at the same time. Both Bob and Sue will have their own kernel state. Bobs changes will change the notebook Sue sees, but Sue's state is unchanged. If sue tries to access the variable Bob created, she will get an error.
 
 ![Collaboration Error](https://github.com/jupyter/colaboratory/raw/master/documentation/img/collaboration-error.png)
