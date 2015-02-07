@@ -8,3 +8,6 @@
 [submodule "colaboratory/resources/extern/polymer/paper-shadow"]
 	path = colaboratory/resources/extern/polymer/paper-shadow
 	url = git://github.com/Polymer/paper-shadow.git
+[submodule "kernel"]
+	path = kernel
+	url = git@github.com:aGHz/ijavascript.git
